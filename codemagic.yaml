@@ -1,0 +1,19 @@
+workflows:
+  android-native:
+    name: Build Movy Native Android App
+    max_build_duration: 60
+    environment:
+      vars:
+        GRADLE_TASK: "assembleRelease"
+    scripts:
+      - name: Change to project root and build
+        script: |
+          cd android  # <-- if your gradlew is inside android/
+          chmod +x ../gradlew
+          ../gradlew $GRADLE_TASK
+    artifacts:
+      - android/app/build/outputs//*.apk
+    publishing:
+      email:
+        recipients:
+          - syedrizwan003@gmail.com 
