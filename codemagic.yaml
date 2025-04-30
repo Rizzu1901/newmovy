@@ -6,13 +6,12 @@ workflows:
       vars:
         GRADLE_TASK: "assembleRelease"
     scripts:
-      - name: Change to project root and build
+      - name: Make gradlew executable and build APK
         script: |
-          cd android  # <-- if your gradlew is inside android/
-          chmod +x ../gradlew
-          ../gradlew $GRADLE_TASK
+          chmod +x gradlew
+          ./gradlew $GRADLE_TASK
     artifacts:
-      - android/app/build/outputs//*.apk
+      - app/build/outputs//*.apk
     publishing:
       email:
         recipients:
